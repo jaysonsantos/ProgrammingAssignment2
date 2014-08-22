@@ -1,8 +1,10 @@
 
 makeCacheMatrix <- function(x = matrix()) {
+    # This will hold already calculated inverse matrix.
     cache <- NULL
     set <- function (y) {
         x <<- y
+        # After setting a new value, cache must be erased.
         cache <<- NULL
     }
 
@@ -15,15 +17,19 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 cacheSolve <- function(x, ...) {
+    # Tries to get an inverse matrix and it might return NULL if not calculated yet.
     inverse = x$getInverse()
     if (!is.null(inverse)) {
         message('Matrix inverse already calculated.')
         return(inverse)
     }
 
+    # In case cache is NULL calculate it
     message('Matrix inverse not calculated yet, calculating it now.')
+    
     matrixData <- x$get()
     inverseMatrix <- solve(matrixData)
+    # After solving an inverse matrix, cache it.
     x$setInverse(inverseMatrix)
     inverseMatrix
 }
