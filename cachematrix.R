@@ -14,9 +14,6 @@ makeCacheMatrix <- function(x = matrix()) {
     list(set = set, get = get, setInverse = setInverse, getInverse = getInverse)
 }
 
-
-## Write a short comment describing this function
-
 cacheSolve <- function(x, ...) {
     inverse = x$getInverse()
     if (!is.null(inverse)) {
@@ -41,7 +38,7 @@ inverseMatrix <- cacheSolve(cacheableMatrix1)
 # Just check if values are the same
 print(inverseMatrix == inverse)
 
-# Checking if it is now came from cache
+# Checking if it now comes from cache
 inverseMatrix <- cacheSolve(cacheableMatrix1)
 print(inverseMatrix == inverse)
 
